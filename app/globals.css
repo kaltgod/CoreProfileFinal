@@ -1,26 +1,358 @@
+/* ===== Tailwind CSS ===== */
 @import "tailwindcss";
 
+/* ===== Theme Variables ===== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Default Matrix theme */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --text-primary: #00ff00;
+  --text-secondary: rgba(0, 255, 0, 0.7);
+  --accent: #00ff00;
+  --accent-hover: #00cc00;
+  --accent-dark: #006400;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Cosmos theme */
+.theme-cosmos {
+  --bg-primary: #020b1a;
+  --bg-secondary: #0a0a1f;
+  --text-primary: #eaf6ff;
+  --text-secondary: #b0e0e6;
+  --accent: #b0e0e6;
+  --accent-hover: #87ceeb;
+  --accent-dark: #5f9ea0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Underwater theme */
+.theme-underwater {
+  --bg-primary: #011627;
+  --bg-secondary: #1a4a5e;
+  --text-primary: #e0f7fa;
+  --text-secondary: #7fb5b5;
+  --accent: #7fb5b5;
+  --accent-hover: #5f9ea0;
+  --accent-dark: #2b6777;
+}
+
+/* ===== Base Styles ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  cursor: none !important;
+  overflow-x: hidden;
+  transition: background-color 0.5s ease;
+}
+
+/* Force black background for Matrix theme (default) to prevent blue bleeding */
+body.theme-default {
+  background-color: #0a0a0a !important;
+}
+
+/* Disable background transition during theme change to prevent color bleeding */
+body.changing-theme {
+  transition: none !important;
+  background-color: var(--bg-primary) !important;
+}
+
+/* Hide cursor on all elements */
+*,
+*::before,
+*::after {
+  cursor: none !important;
+}
+
+/* Mobile - show system cursor */
+@media (max-width: 768px),
+(pointer: coarse) {
+
+  body,
+  *,
+  *::before,
+  *::after {
+    cursor: auto !important;
+  }
+}
+
+/* ===== Selection Styles ===== */
+::selection {
+  background: var(--accent);
+  color: var(--bg-primary);
+}
+
+/* ===== Scrollbar Styles ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-dark);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* ===== Keyframe Animations ===== */
+
+/* Cursor pulse */
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 10px var(--accent-dark), 0 0 20px var(--accent);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 0 15px var(--accent-dark), 0 0 30px var(--accent);
+  }
+}
+
+/* Star twinkle */
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Nebula pulse */
+@keyframes nebulaPulse {
+
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.25;
+    transform: scale(1.1);
+  }
+}
+
+/* Float effect */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Fade in/out for copy hint */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+
+  15%,
+  85% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+}
+
+/* Terminal cursor blink */
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Scatter animation for preloader */
+@keyframes scatter {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(var(--random-x), var(--random-y)) rotate(var(--random-rotation));
+  }
+}
+
+/* Flash effect */
+@keyframes flash {
+  0% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2);
+  }
+}
+
+/* Fade in from bottom */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Component Styles ===== */
+
+/* Cursor flash effect */
+.cursor-flash.flash-active {
+  animation: flash 0.5s ease-out forwards;
+}
+
+/* Terminal cursor */
+.terminal-cursor {
+  animation: blink 0.8s infinite;
+}
+
+/* Theme transition */
+.changing-theme .cursor,
+.changing-theme .cursor-ring,
+.changing-theme .cursor-flash {
+  display: none !important;
+}
+
+/* Photo hover effect */
+.photo-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.7) 0%,
+      transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.photo-item:hover::before {
+  opacity: 1;
+}
+
+/* Star background layer */
+.star {
+  will-change: transform;
+}
+
+/* Nebula glow */
+.nebula {
+  will-change: opacity, transform;
+}
+
+/* Button active state */
+.btn:active {
+  transform: scale(0.95);
+}
+
+/* Parallax layers */
+.parallax-layer {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+/* ===== Cosmos Animations ===== */
+@keyframes twinkle {
+  0% {
+    opacity: 0.3;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 1);
+  }
+}
+
+@keyframes nebulaPulse {
+  0% {
+    opacity: 0.05;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0.15;
+    transform: scale(1.1);
+  }
+}
+
+/* Gallery Slide Animations */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.gallery-slide-right {
+  animation: slideInRight 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.gallery-slide-left {
+  animation: slideInLeft 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
