@@ -8,7 +8,7 @@ export type Language = 'ru' | 'en';
 const translations = {
     ru: {
         name: 'Кирсанов Егор Дмитриевич',
-        subtitle: 'Гений, плейбой, хирург, стоматолог, полномочный представитель администрации президента, хакер, пилот гражданской авиации, заслуженный актер РФ, депутат государственной думы федерального собрания РФ и просто хороший человек',
+        subtitle: 'Гений, плейбой, хирург, стоматолог, полномочный представитель администрации президента, хакер, пилот гражданской авиации, заслуженный актер РФ, депутат государственной думы федерального собрания РФ, гроссмейстер по егерьмейстеру и просто хороший человек',
         telegram: 'Telegram',
         vk: 'ВКонтакте',
         phone: 'Телефон',
@@ -19,8 +19,9 @@ const translations = {
         photo2: 'Гуляю по Питеру',
         photo3: 'На природе',
         photo4: 'На природе',
-        footerLine1: '© 2026 Кирсанов Егор Дмитриевич. Все права защищены.',
+        footerLine1: '© 2026 Kalt, inc. Все права защищены.',
         footerLine2: 'Юридический адрес: 537 Paper Street, Bradford, 19808',
+        footerGithub: 'Мой',
         copiedHint: 'Скопировано в буфер обмена!',
         // Темы
         themeMatrix: 'Матрица',
@@ -29,7 +30,7 @@ const translations = {
     },
     en: {
         name: 'Egor Dmitrievich Kirsanov',
-        subtitle: 'Genius, playboy, surgeon, dentist, authorized representative of the presidential administration, hacker, civil aviation pilot, honored actor of the Russian Federation, deputy of the State Duma of the Federal Assembly of the Russian Federation, and just a good person',
+        subtitle: 'Genius, playboy, surgeon, dentist, authorized representative of the presidential administration, hacker, civil aviation pilot, honored actor of the Russian Federation, deputy of the State Duma of the Federal Assembly of the Russian Federation, grandmaster of Jagermeister, and just a good person',
         telegram: 'Telegram',
         vk: 'VKontakte',
         phone: 'Phone',
@@ -40,8 +41,9 @@ const translations = {
         photo2: 'Walking around St. Petersburg',
         photo3: 'In nature',
         photo4: 'In nature',
-        footerLine1: '© 2026 Egor Dmitrievich Kirsanov. All rights reserved.',
+        footerLine1: '© 2026 Kalt, inc. All rights reserved.',
         footerLine2: 'Legal address: 537 Paper Street, Bradford, 19808',
+        footerGithub: 'My',
         copiedHint: 'Copied to clipboard!',
         // Темы
         themeMatrix: 'Matrix',

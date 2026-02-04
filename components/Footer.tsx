@@ -49,9 +49,31 @@ export function Footer() {
                     color: style.color,
                     letterSpacing: '0.3px',
                     lineHeight: 1.5,
-                }}
-            >
+                }}>
                 {t('footerLine2')}
+            </p>
+            <p
+                className="footer-text"
+                style={{
+                    fontFamily: 'Roboto, sans-serif',
+                    fontSize: '13.6px',
+                    color: style.color,
+                    letterSpacing: '0.3px',
+                    lineHeight: 1.5,
+                    marginTop: '8px',
+                }}>
+                {t('footerGithub')}{' '}
+                <a
+                    href="https://github.com/kaltgod"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                        color: style.color,
+                        textDecoration: 'underline',
+                    }}
+                >
+                    GitHub
+                </a>
             </p>
         </footer>
     );
